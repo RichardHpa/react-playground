@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/RichardHpa/react-playground/static/js/main.bcfa826c.chunk.js",
-    "main.js.map": "/RichardHpa/react-playground/static/js/main.bcfa826c.chunk.js.map",
+    "main.js": "/RichardHpa/react-playground/static/js/main.9615e1c8.chunk.js",
+    "main.js.map": "/RichardHpa/react-playground/static/js/main.9615e1c8.chunk.js.map",
     "runtime-main.js": "/RichardHpa/react-playground/static/js/runtime-main.16b4805a.js",
     "runtime-main.js.map": "/RichardHpa/react-playground/static/js/runtime-main.16b4805a.js.map",
     "static/js/2.e5854426.chunk.js": "/RichardHpa/react-playground/static/js/2.e5854426.chunk.js",
@@ -14,6 +14,6 @@
   "entrypoints": [
     "static/js/runtime-main.16b4805a.js",
     "static/js/2.e5854426.chunk.js",
-    "static/js/main.bcfa826c.chunk.js"
+    "static/js/main.9615e1c8.chunk.js"
   ]
 }
