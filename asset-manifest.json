@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/RichardHpa/react-playground/static/js/main.9615e1c8.chunk.js",
-    "main.js.map": "/RichardHpa/react-playground/static/js/main.9615e1c8.chunk.js.map",
-    "runtime-main.js": "/RichardHpa/react-playground/static/js/runtime-main.16b4805a.js",
-    "runtime-main.js.map": "/RichardHpa/react-playground/static/js/runtime-main.16b4805a.js.map",
-    "static/js/2.e5854426.chunk.js": "/RichardHpa/react-playground/static/js/2.e5854426.chunk.js",
-    "static/js/2.e5854426.chunk.js.map": "/RichardHpa/react-playground/static/js/2.e5854426.chunk.js.map",
-    "static/js/3.71e713e4.chunk.js": "/RichardHpa/react-playground/static/js/3.71e713e4.chunk.js",
-    "static/js/3.71e713e4.chunk.js.map": "/RichardHpa/react-playground/static/js/3.71e713e4.chunk.js.map",
-    "index.html": "/RichardHpa/react-playground/index.html",
-    "static/js/2.e5854426.chunk.js.LICENSE.txt": "/RichardHpa/react-playground/static/js/2.e5854426.chunk.js.LICENSE.txt"
+    "main.js": "/react-playground/static/js/main.9615e1c8.chunk.js",
+    "main.js.map": "/react-playground/static/js/main.9615e1c8.chunk.js.map",
+    "runtime-main.js": "/react-playground/static/js/runtime-main.67b2791c.js",
+    "runtime-main.js.map": "/react-playground/static/js/runtime-main.67b2791c.js.map",
+    "static/js/2.e5854426.chunk.js": "/react-playground/static/js/2.e5854426.chunk.js",
+    "static/js/2.e5854426.chunk.js.map": "/react-playground/static/js/2.e5854426.chunk.js.map",
+    "static/js/3.71e713e4.chunk.js": "/react-playground/static/js/3.71e713e4.chunk.js",
+    "static/js/3.71e713e4.chunk.js.map": "/react-playground/static/js/3.71e713e4.chunk.js.map",
+    "index.html": "/react-playground/index.html",
+    "static/js/2.e5854426.chunk.js.LICENSE.txt": "/react-playground/static/js/2.e5854426.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.16b4805a.js",
+    "static/js/runtime-main.67b2791c.js",
     "static/js/2.e5854426.chunk.js",
     "static/js/main.9615e1c8.chunk.js"
   ]
