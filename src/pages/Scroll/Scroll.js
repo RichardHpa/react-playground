@@ -38,7 +38,7 @@ const Scroll = () => {
     setActiveTab(e);
   };
 
-  const handleOnSetInavtive = (e) => {
+  const handleOnSetInAvtive = (e) => {
     if (e === activeTab) {
       setActiveTab(false);
     }
@@ -79,7 +79,7 @@ const Scroll = () => {
                 offset={-Math.abs(offset)}
                 activeClass="active"
                 onSetActive={handleOnSetActive}
-                onSetInactive={handleOnSetInavtive}
+                onSetInactive={handleOnSetInAvtive}
                 onClick={() => {
                   handleOnClick(tab.key);
                 }}
