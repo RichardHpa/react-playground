@@ -2,7 +2,7 @@
   "name": "react-playground",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://richardhpa.github.io/react-playground",
+  "homepage": "https://richardhpa.github.io",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
@@ -59,7 +59,7 @@
     "gh-pages": "^3.1.0",
     "prettier": "^2.3.0"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "description": "A area where I can run and test react components.",
   "main": "index.js",
   "repository": {
     "type": "git",

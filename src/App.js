@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { makeStyles, Container } from '@material-ui/core';
+import { useState, useEffect } from 'react';
+import { makeStyles, Container, useTheme, useMediaQuery } from '@material-ui/core';
 import { useAuth } from 'context/AuthenticationContext';
 import clsx from 'clsx';
 import Header from './layouts/Header';
@@ -36,6 +36,14 @@ function App() {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const { user } = useAuth();
+  const theme = useTheme();
+  const mobileView = useMediaQuery(theme.breakpoints.down('sm'));
+
+  useEffect(() => {
+    if (mobileView) {
+      setOpen(false);
+    }
+  }, [mobileView]);
 
   const handleSetOpen = () => {
     setOpen(!open);
@@ -44,7 +52,7 @@ function App() {
   return (
     <div className={classes.root}>
       <Header toggleNav={handleSetOpen} />
-      <Sidebar open={open} />
+      <Sidebar open={open} toggleNav={handleSetOpen} />
       <main className={classes.main}>
         <div className={clsx(classes.toolbar, { [classes.isLoggedIn]: Boolean(user) })} />
         <Container maxWidth="md">

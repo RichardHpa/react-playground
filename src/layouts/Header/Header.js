@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   userToolbar: {
     backgroundColor: theme.palette.secondary.main,
+    minHeight: 48,
   },
 }));
 

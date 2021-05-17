@@ -9,6 +9,8 @@ import {
   ListItemText,
   Divider,
   Collapse,
+  useTheme,
+  useMediaQuery,
 } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
@@ -95,9 +97,89 @@ const dummyList = [
   'Category 5',
 ];
 
-const Sidebar = ({ open = true }) => {
+const ListNavItems = () => {
+  const classes = useStyles();
+  return (
+    <>
+      <ListItem
+        button
+        component={RouterLink}
+        to="/"
+        exact
+        activeClassName={classes.active}
+        className={classes.listItem}
+      >
+        <ListItemIcon>
+          <HomeIcon color="inherit" />
+        </ListItemIcon>
+        <ListItemText primary="Home" />
+      </ListItem>
+      <ListItem
+        button
+        component={RouterLink}
+        to="/scroll"
+        activeClassName={classes.active}
+        className={classes.listItem}
+      >
+        <ListItemIcon>
+          <HeightIcon color="inherit" />
+        </ListItemIcon>
+        <ListItemText primary="Scroll" />
+      </ListItem>
+    </>
+  );
+};
+
+const DummyList = () => {
+  const classes = useStyles();
+  return (
+    <>
+      {dummyList.map((text, index) => (
+        <ListItem button key={text} className={classes.listItem}>
+          <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          <ListItemText primary={text} />
+        </ListItem>
+      ))}
+    </>
+  );
+};
+
+const Sidebar = ({ open = true, toggleNav = () => {} }) => {
   const classes = useStyles();
   const { user } = useAuth();
+  const theme = useTheme();
+  const mobileView = useMediaQuery(theme.breakpoints.down('sm'));
+
+  if (mobileView) {
+    return (
+      <Drawer open={open} onClose={toggleNav}>
+        <Divider />
+        <List
+          component="nav"
+          aria-labelledby="in-app-list-subheader"
+          subheader={
+            <ListSubheader component="div" id="in-app-list-subheader">
+              In App pages
+            </ListSubheader>
+          }
+        >
+          <ListNavItems />
+        </List>
+        <Divider />
+        <List
+          component="nav"
+          aria-labelledby="dummy-list-subheader"
+          subheader={
+            <ListSubheader component="div" id="dummy-list-subheader">
+              Dummy List
+            </ListSubheader>
+          }
+        >
+          <DummyList />
+        </List>
+      </Drawer>
+    );
+  }
 
   return (
     <Drawer
@@ -126,31 +208,7 @@ const Sidebar = ({ open = true }) => {
           </Collapse>
         }
       >
-        <ListItem
-          button
-          component={RouterLink}
-          to="/"
-          exact
-          activeClassName={classes.active}
-          className={classes.listItem}
-        >
-          <ListItemIcon>
-            <HomeIcon color="inherit" />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem
-          button
-          component={RouterLink}
-          to="/scroll"
-          activeClassName={classes.active}
-          className={classes.listItem}
-        >
-          <ListItemIcon>
-            <HeightIcon color="inherit" />
-          </ListItemIcon>
-          <ListItemText primary="Scroll" />
-        </ListItem>
+        <ListNavItems />
       </List>
       <Divider />
       <List
@@ -164,12 +222,7 @@ const Sidebar = ({ open = true }) => {
           </Collapse>
         }
       >
-        {dummyList.map((text, index) => (
-          <ListItem button key={text} className={classes.listItem}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <DummyList />
       </List>
       <Divider />
     </Drawer>
@@ -178,6 +231,7 @@ const Sidebar = ({ open = true }) => {
 
 Sidebar.propTypes = {
   open: PropTypes.bool,
+  toggleNav: PropTypes.func,
 };
 
 export default Sidebar;

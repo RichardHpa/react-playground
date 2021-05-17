@@ -26,7 +26,6 @@ const tabs = [
   { label: 'Item Three', key: 'item-Three' },
 ];
 
-// onSetActive
 const Scroll = () => {
   const classes = useStyles();
   const [activeTab, setActiveTab] = useState(false);
@@ -42,10 +41,6 @@ const Scroll = () => {
     if (e === activeTab) {
       setActiveTab(false);
     }
-  };
-
-  const handleOnClick = (tab) => {
-    // setActiveTab(tab);
   };
 
   return (
@@ -80,9 +75,6 @@ const Scroll = () => {
                 activeClass="active"
                 onSetActive={handleOnSetActive}
                 onSetInactive={handleOnSetInAvtive}
-                onClick={() => {
-                  handleOnClick(tab.key);
-                }}
               />
             );
           })}
