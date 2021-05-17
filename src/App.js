@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { makeStyles, Container } from '@material-ui/core';
+import { useAuth } from 'context/AuthenticationContext';
+import clsx from 'clsx';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 import Sidebar from './layouts/Sidebar';
@@ -15,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
+    backgroundColor: theme.palette.background.paper,
   },
   toolbar: {
     display: 'flex',
@@ -24,11 +27,15 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
+  isLoggedIn: {
+    minHeight: 112,
+  },
 }));
 
 function App() {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
+  const { user } = useAuth();
 
   const handleSetOpen = () => {
     setOpen(!open);
@@ -39,7 +46,7 @@ function App() {
       <Header toggleNav={handleSetOpen} />
       <Sidebar open={open} />
       <main className={classes.main}>
-        <div className={classes.toolbar} />
+        <div className={clsx(classes.toolbar, { [classes.isLoggedIn]: Boolean(user) })} />
         <Container maxWidth="md">
           <Routes />
         </Container>

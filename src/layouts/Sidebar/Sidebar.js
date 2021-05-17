@@ -4,13 +4,19 @@ import {
   Drawer,
   List,
   ListItem,
+  ListSubheader,
   ListItemIcon,
   ListItemText,
   Divider,
+  Collapse,
 } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import HomeIcon from '@material-ui/icons/Home';
+import HeightIcon from '@material-ui/icons/Height';
 import clsx from 'clsx';
+import { NavLink as RouterLink } from 'react-router-dom';
+import { useAuth } from 'context/AuthenticationContext';
 
 const drawerWidth = 240;
 
@@ -21,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
   },
   drawerPaper: {
-    // border: 'none',
-    // backgroundColor: theme.palette.background.paper,
+    border: 'none',
+    backgroundColor: theme.palette.background.main,
   },
   drawerOpen: {
     width: drawerWidth,
@@ -50,15 +56,48 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
+  listItem: {
+    borderRadius: '0 24px 24px 0',
+  },
+  active: {
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText,
+
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+      color: theme.palette.secondary.contrastText,
+    },
+    '& > *': {
+      color: theme.palette.secondary.contrastText,
+    },
+  },
+  isLoggedIn: {
+    minHeight: 112,
+  },
 }));
+
+const dummyList = [
+  'Inbox',
+  'Starred',
+  'Send email',
+  'Sent email',
+  'Snoozed',
+  'Drafts',
+  'All mail',
+  'Trash',
+  'Spam',
+  'Deleted Messages',
+  'Categories',
+  'Category 1',
+  'Category 2',
+  'Category 3',
+  'Category 4',
+  'Category 5',
+];
 
 const Sidebar = ({ open = true }) => {
   const classes = useStyles();
-  // const [open, setOpen] = useState(false);
-
-  // const toggleDrawer = () => {
-  //   setOpen(!open);
-  // };
+  const { user } = useAuth();
 
   return (
     <Drawer
@@ -74,43 +113,65 @@ const Sidebar = ({ open = true }) => {
         }),
       }}
     >
-      <div className={classes.toolbar} />
+      <div className={clsx(classes.toolbar, { [classes.isLoggedIn]: Boolean(user) })} />
       <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
+      <List
+        component="nav"
+        aria-labelledby="in-app-list-subheader"
+        subheader={
+          <Collapse in={open}>
+            <ListSubheader component="div" id="in-app-list-subheader">
+              In App pages
+            </ListSubheader>
+          </Collapse>
+        }
+      >
+        <ListItem
+          button
+          component={RouterLink}
+          to="/"
+          exact
+          activeClassName={classes.active}
+          className={classes.listItem}
+        >
+          <ListItemIcon>
+            <HomeIcon color="inherit" />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem
+          button
+          component={RouterLink}
+          to="/scroll"
+          activeClassName={classes.active}
+          className={classes.listItem}
+        >
+          <ListItemIcon>
+            <HeightIcon color="inherit" />
+          </ListItemIcon>
+          <ListItemText primary="Scroll" />
+        </ListItem>
+      </List>
+      <Divider />
+      <List
+        component="nav"
+        aria-labelledby="dummy-list-subheader"
+        subheader={
+          <Collapse in={open}>
+            <ListSubheader component="div" id="dummy-list-subheader">
+              Dummy List
+            </ListSubheader>
+          </Collapse>
+        }
+      >
+        {dummyList.map((text, index) => (
+          <ListItem button key={text} className={classes.listItem}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </Drawer>
   );
 };

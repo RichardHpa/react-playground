@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { AuthenticationProvider } from 'context/AuthenticationContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -10,16 +11,18 @@ import getTheme from './Theme/base';
 const queryClient = new QueryClient();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+  // <React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <AuthenticationProvider>
       <ThemeProvider theme={getTheme('LIGHT')}>
         <Router>
           <CssBaseline />
           <App />
         </Router>
       </ThemeProvider>
-    </QueryClientProvider>
-  </React.StrictMode>,
+    </AuthenticationProvider>
+  </QueryClientProvider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
