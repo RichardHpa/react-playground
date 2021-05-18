@@ -4,6 +4,7 @@ import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { AuthenticationProvider } from 'context/AuthenticationContext';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import getTheme from './Theme/base';
@@ -21,6 +22,7 @@ ReactDOM.render(
         </Router>
       </ThemeProvider>
     </AuthenticationProvider>
+    <ReactQueryDevtools position="bottom-right" />
   </QueryClientProvider>,
   // </React.StrictMode>,
   document.getElementById('root')

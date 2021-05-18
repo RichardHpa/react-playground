@@ -16,6 +16,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import HomeIcon from '@material-ui/icons/Home';
 import HeightIcon from '@material-ui/icons/Height';
+import SyncAltIcon from '@material-ui/icons/SyncAlt';
 import clsx from 'clsx';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { useAuth } from 'context/AuthenticationContext';
@@ -125,6 +126,18 @@ const ListNavItems = () => {
           <HeightIcon color="inherit" />
         </ListItemIcon>
         <ListItemText primary="Scroll" />
+      </ListItem>
+      <ListItem
+        button
+        component={RouterLink}
+        to="/react-query"
+        activeClassName={classes.active}
+        className={classes.listItem}
+      >
+        <ListItemIcon>
+          <SyncAltIcon color="inherit" />
+        </ListItemIcon>
+        <ListItemText primary="React Query" />
       </ListItem>
     </>
   );

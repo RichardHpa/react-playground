@@ -14,22 +14,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const buttons = [
+  { label: 'React Scroll', to: '/scroll' },
+  { label: 'React Query', to: '/react-query' },
+];
+
 export default function Home() {
   const classes = useStyles();
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={2}>
-        <Grid item>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/scroll"
-          >
-            React Scroll
-          </Button>
-        </Grid>
+        {buttons.map((button) => (
+          <Grid item key={button.label}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to={button.to}
+            >
+              {button.label}
+            </Button>
+          </Grid>
+        ))}
       </Grid>
     </Paper>
   );
