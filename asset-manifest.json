@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/static/js/main.adabcb12.chunk.js",
-    "main.js.map": "/static/js/main.adabcb12.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.382281a7.js",
-    "runtime-main.js.map": "/static/js/runtime-main.382281a7.js.map",
-    "static/js/2.f836904c.chunk.js": "/static/js/2.f836904c.chunk.js",
-    "static/js/2.f836904c.chunk.js.map": "/static/js/2.f836904c.chunk.js.map",
-    "static/js/3.bc08b831.chunk.js": "/static/js/3.bc08b831.chunk.js",
-    "static/js/3.bc08b831.chunk.js.map": "/static/js/3.bc08b831.chunk.js.map",
-    "index.html": "/index.html",
-    "static/js/2.f836904c.chunk.js.LICENSE.txt": "/static/js/2.f836904c.chunk.js.LICENSE.txt"
+    "main.js": "/react-playground/static/js/main.35e4bff0.chunk.js",
+    "main.js.map": "/react-playground/static/js/main.35e4bff0.chunk.js.map",
+    "runtime-main.js": "/react-playground/static/js/runtime-main.20639ffb.js",
+    "runtime-main.js.map": "/react-playground/static/js/runtime-main.20639ffb.js.map",
+    "static/js/2.89f4ff36.chunk.js": "/react-playground/static/js/2.89f4ff36.chunk.js",
+    "static/js/2.89f4ff36.chunk.js.map": "/react-playground/static/js/2.89f4ff36.chunk.js.map",
+    "static/js/3.bc08b831.chunk.js": "/react-playground/static/js/3.bc08b831.chunk.js",
+    "static/js/3.bc08b831.chunk.js.map": "/react-playground/static/js/3.bc08b831.chunk.js.map",
+    "index.html": "/react-playground/index.html",
+    "static/js/2.89f4ff36.chunk.js.LICENSE.txt": "/react-playground/static/js/2.89f4ff36.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.382281a7.js",
-    "static/js/2.f836904c.chunk.js",
-    "static/js/main.adabcb12.chunk.js"
+    "static/js/runtime-main.20639ffb.js",
+    "static/js/2.89f4ff36.chunk.js",
+    "static/js/main.35e4bff0.chunk.js"
   ]
 }
