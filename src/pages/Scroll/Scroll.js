@@ -13,7 +13,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   isLoggedIn: {
-    top: 112,
+    top: 104,
+    [theme.breakpoints.up('sm')]: {
+      top: 112,
+    },
   },
   indicator: {
     height: 5,

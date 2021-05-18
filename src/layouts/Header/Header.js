@@ -1,4 +1,12 @@
-import { AppBar, Toolbar, Typography, makeStyles, IconButton, Button } from '@material-ui/core';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  makeStyles,
+  IconButton,
+  Button,
+  Hidden,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -56,9 +64,16 @@ export default function Header({ toggleNav = () => {} }) {
           </Toolbar>
         )}
         <Toolbar className={classes.mainToolbar}>
-          <IconButton color="inherit" aria-label="open drawer" onClick={toggleDrawer} edge="start">
-            <MenuIcon />
-          </IconButton>
+          <Hidden mdUp>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer}
+              edge="start"
+            >
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
           <Typography
             className={classes.heading}
             variant="h6"

@@ -11,12 +11,15 @@ import {
   Collapse,
   useTheme,
   useMediaQuery,
+  Tooltip,
+  IconButton,
 } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import HomeIcon from '@material-ui/icons/Home';
 import HeightIcon from '@material-ui/icons/Height';
 import SyncAltIcon from '@material-ui/icons/SyncAlt';
+import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 import clsx from 'clsx';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { useAuth } from 'context/AuthenticationContext';
@@ -76,6 +79,26 @@ const useStyles = makeStyles((theme) => ({
   },
   isLoggedIn: {
     minHeight: 112,
+  },
+  // Sidebar Toggler at bottom
+  menuContainer: {
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+  },
+  menuContent: {
+    padding: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+    overflowY: 'auto',
+    overflowX: 'hidden',
+  },
+  iconOpen: {
+    color: '#223368',
+    transform: 'rotate(180deg)',
   },
 }));
 
@@ -208,36 +231,49 @@ const Sidebar = ({ open = true, toggleNav = () => {} }) => {
         }),
       }}
     >
-      <div className={clsx(classes.toolbar, { [classes.isLoggedIn]: Boolean(user) })} />
-      <Divider />
-      <List
-        component="nav"
-        aria-labelledby="in-app-list-subheader"
-        subheader={
-          <Collapse in={open}>
-            <ListSubheader component="div" id="in-app-list-subheader">
-              In App pages
-            </ListSubheader>
-          </Collapse>
-        }
-      >
-        <ListNavItems />
-      </List>
-      <Divider />
-      <List
-        component="nav"
-        aria-labelledby="dummy-list-subheader"
-        subheader={
-          <Collapse in={open}>
-            <ListSubheader component="div" id="dummy-list-subheader">
-              Dummy List
-            </ListSubheader>
-          </Collapse>
-        }
-      >
-        <DummyList />
-      </List>
-      <Divider />
+      <div className={classes.menuContainer}>
+        <div className={classes.menuContent}>
+          <div className={clsx(classes.toolbar, { [classes.isLoggedIn]: Boolean(user) })} />
+          <Divider />
+          <List
+            component="nav"
+            aria-labelledby="in-app-list-subheader"
+            subheader={
+              <Collapse in={open}>
+                <ListSubheader component="div" id="in-app-list-subheader">
+                  In App pages
+                </ListSubheader>
+              </Collapse>
+            }
+          >
+            <ListNavItems />
+          </List>
+          <Divider />
+          <List
+            component="nav"
+            aria-labelledby="dummy-list-subheader"
+            subheader={
+              <Collapse in={open}>
+                <ListSubheader component="div" id="dummy-list-subheader">
+                  Dummy List
+                </ListSubheader>
+              </Collapse>
+            }
+          >
+            <DummyList />
+          </List>
+          <Divider />
+        </div>
+
+        <div className={classes.menuFooter}>
+          <Divider />
+          <Tooltip title="Toggle Sidebar">
+            <IconButton onClick={toggleNav}>
+              <MenuOpenIcon className={open ? classes.iconOpen : ''} />
+            </IconButton>
+          </Tooltip>
+        </div>
+      </div>
     </Drawer>
   );
 };
