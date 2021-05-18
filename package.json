@@ -2,7 +2,7 @@
   "name": "react-playground",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://richardhpa.github.io",
+  "homepage": "https://richardhpa.github.io/react-playground/",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
