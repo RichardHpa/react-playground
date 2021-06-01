@@ -32,6 +32,10 @@
     ],
     "react/react-in-jsx-scope": [0],
     "react/require-default-props": [0],
-    "no-unused-vars": [1]
+    "no-unused-vars": [1],
+    "import/no-unresolved": [
+      2,
+      { "ignore": ["@axa-fr/react-oidc-context", "@axa-fr/react-oidc-core"] }
+    ]
   }
 }

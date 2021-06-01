@@ -10,7 +10,8 @@ import {
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
-import { useAuth } from 'context/AuthenticationContext';
+// import { useAuth } from 'context/AuthenticationContext';
+import { useReactOidc } from '@axa-fr/react-oidc-context';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
@@ -39,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header({ toggleNav = () => {} }) {
   const classes = useStyles();
-  const { user, login, logout } = useAuth();
+  // const { user, login, logout } = useAuth();
+  const { isEnabled, login, logout, oidcUser } = useReactOidc();
 
   const toggleDrawer = () => {
     toggleNav();
@@ -56,13 +58,14 @@ export default function Header({ toggleNav = () => {} }) {
   return (
     <>
       <AppBar position="fixed" className={classes.appBar}>
-        {user && (
+        {oidcUser || !isEnabled ? (
           <Toolbar variant="dense" className={classes.userToolbar}>
             <Typography variant="body2" color="inherit" noWrap>
-              Hello {user.name}
+              {/* Hello {user.name} */}
+              Hello {oidcUser.profile.name}
             </Typography>
           </Toolbar>
-        )}
+        ) : null}
         <Toolbar className={classes.mainToolbar}>
           <Hidden mdUp>
             <IconButton
@@ -84,10 +87,10 @@ export default function Header({ toggleNav = () => {} }) {
           >
             React Playground
           </Typography>
-          {user ? (
+          {oidcUser || !isEnabled ? (
             <>
               <Typography variant="h6" color="inherit" noWrap>
-                Hello {user.name}
+                Hello {oidcUser.profile.name}
               </Typography>
               <Button color="inherit" onClick={handleLogout}>
                 Logout

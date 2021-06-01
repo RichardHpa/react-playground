@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { makeStyles, Container, useTheme, useMediaQuery } from '@material-ui/core';
 import { useAuth } from 'context/AuthenticationContext';
 import clsx from 'clsx';
+import { AuthenticationProvider, oidcLog } from '@axa-fr/react-oidc-context';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 import Sidebar from './layouts/Sidebar';
 import Routes from './Routes';
+import oidcConfiguration from './configuration';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,17 +52,19 @@ function App() {
   };
 
   return (
-    <div className={classes.root}>
-      <Header toggleNav={handleSetOpen} />
-      <Sidebar open={open} toggleNav={handleSetOpen} />
-      <main className={classes.main}>
-        <div className={clsx(classes.toolbar, { [classes.isLoggedIn]: Boolean(user) })} />
-        <Container maxWidth="md">
-          <Routes />
-        </Container>
-        <Footer />
-      </main>
-    </div>
+    <AuthenticationProvider configuration={oidcConfiguration} loggerLevel={oidcLog.DEBUG} isEnabled>
+      <div className={classes.root}>
+        <Header toggleNav={handleSetOpen} />
+        <Sidebar open={open} toggleNav={handleSetOpen} />
+        <main className={classes.main}>
+          <div className={clsx(classes.toolbar, { [classes.isLoggedIn]: Boolean(user) })} />
+          <Container maxWidth="md">
+            <Routes />
+          </Container>
+          <Footer />
+        </main>
+      </div>
+    </AuthenticationProvider>
   );
 }
 
