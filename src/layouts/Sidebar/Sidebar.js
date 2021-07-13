@@ -162,6 +162,18 @@ const ListNavItems = () => {
         </ListItemIcon>
         <ListItemText primary="React Query" />
       </ListItem>
+      <ListItem
+        button
+        component={RouterLink}
+        to="/select-testing"
+        activeClassName={classes.active}
+        className={classes.listItem}
+      >
+        <ListItemIcon>
+          <SyncAltIcon color="inherit" />
+        </ListItemIcon>
+        <ListItemText primary="Select Testing" />
+      </ListItem>
     </>
   );
 };
