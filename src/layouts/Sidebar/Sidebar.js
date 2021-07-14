@@ -20,6 +20,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import HeightIcon from '@material-ui/icons/Height';
 import SyncAltIcon from '@material-ui/icons/SyncAlt';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
+import BuildIcon from '@material-ui/icons/Build';
 import clsx from 'clsx';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { useAuth } from 'context/AuthenticationContext';
@@ -173,6 +174,18 @@ const ListNavItems = () => {
           <SyncAltIcon color="inherit" />
         </ListItemIcon>
         <ListItemText primary="Select Testing" />
+      </ListItem>
+      <ListItem
+        button
+        component={RouterLink}
+        to="/random"
+        activeClassName={classes.active}
+        className={classes.listItem}
+      >
+        <ListItemIcon>
+          <BuildIcon color="inherit" />
+        </ListItemIcon>
+        <ListItemText primary="Random Code" />
       </ListItem>
     </>
   );

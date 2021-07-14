@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     minHeight: '100vh',
     backgroundColor: theme.palette.background.paper,
+    overflowX: 'auto',
   },
   toolbar: {
     display: 'flex',
@@ -58,7 +59,7 @@ function App() {
         <Sidebar open={open} toggleNav={handleSetOpen} />
         <main className={classes.main}>
           <div className={clsx(classes.toolbar, { [classes.isLoggedIn]: Boolean(user) })} />
-          <Container maxWidth="md">
+          <Container maxWidth="xl" fullWidth>
             <Routes />
           </Container>
           <Footer />
