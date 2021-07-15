@@ -16,7 +16,6 @@ import { useReactOidc } from '@axa-fr/react-oidc-context';
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
     backgroundColor: 'white',
   },
   heading: {

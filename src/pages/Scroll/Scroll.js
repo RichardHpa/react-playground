@@ -3,20 +3,10 @@ import { Box, AppBar, Tabs, Tab, makeStyles, Paper, Typography } from '@material
 import Lorem from 'components/Lorem';
 import { Link, Element } from 'react-scroll';
 import { useAuth } from 'context/AuthenticationContext';
-import clsx from 'clsx';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   stickyAppBar: {
-    top: theme.mixins.toolbar.minHeight,
-    [theme.breakpoints.up('sm')]: {
-      top: 64,
-    },
-  },
-  isLoggedIn: {
-    top: 104,
-    [theme.breakpoints.up('sm')]: {
-      top: 112,
-    },
+    top: '-20px',
   },
   indicator: {
     height: 5,
@@ -27,6 +17,16 @@ const tabs = [
   { label: 'Item One', key: 'item-One' },
   { label: 'Item Two', key: 'item-Two' },
   { label: 'Item Three', key: 'item-Three' },
+  { label: 'Base Level' },
+  { label: 'Product Hierarchy' },
+  { label: 'Packaging' },
+  { label: 'Logistics' },
+  { label: 'Pallet' },
+  { label: 'Dates' },
+  { label: 'Declarations' },
+  { label: 'Instructions' },
+  { label: 'Marketing' },
+  { label: 'Communications' },
 ];
 
 const Scroll = () => {
@@ -40,7 +40,7 @@ const Scroll = () => {
     setActiveTab(e);
   };
 
-  const handleOnSetInAvtive = (e) => {
+  const handleOnSetInActive = (e) => {
     if (e === activeTab) {
       setActiveTab(false);
     }
@@ -49,11 +49,7 @@ const Scroll = () => {
   return (
     <Box>
       <Lorem />
-      <AppBar
-        position="sticky"
-        color="secondary"
-        className={clsx(classes.stickyAppBar, { [classes.isLoggedIn]: Boolean(user) })}
-      >
+      <AppBar position="sticky" color="secondary" className={classes.stickyAppBar}>
         <Tabs
           aria-label="simple tabs example"
           indicatorColor="primary"
@@ -77,7 +73,8 @@ const Scroll = () => {
                 offset={-Math.abs(offset)}
                 activeClass="active"
                 onSetActive={handleOnSetActive}
-                onSetInactive={handleOnSetInAvtive}
+                onSetInactive={handleOnSetInActive}
+                containerId="layoutContent"
               />
             );
           })}

@@ -1,26 +1,42 @@
 import { useState, useEffect } from 'react';
 import { makeStyles, Container, useTheme, useMediaQuery } from '@material-ui/core';
-import { useAuth } from 'context/AuthenticationContext';
+// import { useAuth } from 'context/AuthenticationContext';
 import clsx from 'clsx';
-import { AuthenticationProvider, oidcLog } from '@axa-fr/react-oidc-context';
+import { useReactOidc } from '@axa-fr/react-oidc-context';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 import Sidebar from './layouts/Sidebar';
 import Routes from './Routes';
-import oidcConfiguration from './configuration';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    backgroundColor: theme.palette.background.paper,
     display: 'flex',
+    height: '100%',
+    overflow: 'hidden',
+    width: '100%',
   },
-  main: {
-    flexGrow: 1,
-    paddingTop: theme.spacing(3),
+  dashboardLayoutWrapper: {
+    display: 'flex',
+    flex: '1 1 auto',
+    overflow: 'hidden',
+    marginTop: '64px',
+  },
+  dashboardLayoutContainer: {
+    display: 'flex',
+    flex: '1 1 auto',
+    overflow: 'hidden',
+  },
+  dashboardLayoutContent: {
+    flex: '1 1 auto',
+    height: '100%',
+    overflow: 'auto',
+    position: 'relative',
+    WebkitOverflowScrolling: 'touch',
+    paddingTop: '20px',
+    //
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh',
-    backgroundColor: theme.palette.background.paper,
-    overflowX: 'auto',
   },
   toolbar: {
     display: 'flex',
@@ -31,14 +47,18 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   isLoggedIn: {
-    minHeight: 112,
+    marginTop: '104px',
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '112px',
+    },
   },
 }));
 
 function App() {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const { oidcUser: user } = useReactOidc();
   const theme = useTheme();
   const mobileView = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -53,19 +73,22 @@ function App() {
   };
 
   return (
-    <AuthenticationProvider configuration={oidcConfiguration} loggerLevel={oidcLog.DEBUG} isEnabled>
-      <div className={classes.root}>
-        <Header toggleNav={handleSetOpen} />
-        <Sidebar open={open} toggleNav={handleSetOpen} />
-        <main className={classes.main}>
-          <div className={clsx(classes.toolbar, { [classes.isLoggedIn]: Boolean(user) })} />
-          <Container maxWidth="xl" fullWidth>
-            <Routes />
-          </Container>
-          <Footer />
-        </main>
+    <div className={classes.root}>
+      <Header toggleNav={handleSetOpen} />
+      <Sidebar open={open} toggleNav={handleSetOpen} />
+      <div
+        className={clsx(classes.dashboardLayoutWrapper, { [classes.isLoggedIn]: Boolean(user) })}
+      >
+        <div className={classes.dashboardLayoutContainer}>
+          <div className={classes.dashboardLayoutContent} id="layoutContent">
+            <Container maxWidth="md">
+              <Routes />
+            </Container>
+            <Footer />
+          </div>
+        </div>
       </div>
-    </AuthenticationProvider>
+    </div>
   );
 }
 
